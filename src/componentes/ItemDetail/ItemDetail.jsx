@@ -5,9 +5,10 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { CarritoContext } from '../../context/CarritoContext'
 import { useContext } from 'react'
+import { toast } from 'react-toastify';
 
 
-const ItemDetail = ({id, nombre, precio, img, stock}) => {
+const ItemDetail = ({id, nombre, precio, img, stock, descripcion}) => {
  // creamos un estado local con la cantidad de productos agregados
   const [agregarCantidad, setAgregarCantidad] = useState(0)
 
@@ -22,6 +23,7 @@ const ItemDetail = ({id, nombre, precio, img, stock}) => {
     //Ahora aca yo puedo crear un objeto con el item y la cantidad
     const item = {id, nombre, precio}
     agregarAlCarrito (item, cantidad)
+    toast.success("Su compra fue enviada al carrito",{autoClase:1000, theme: "dark", position: "top-right"})
   }
 
   return (
@@ -30,8 +32,7 @@ const ItemDetail = ({id, nombre, precio, img, stock}) => {
         <h3>Precio {precio} </h3>
         <h3>ID: {id}</h3>
         <img src={img} alt={nombre} />
-        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Mollitia, labore. Facilis commodi harum eligendi eum amet quia nesciunt asperiores. Quibusdam voluptates assumenda ipsam magni dignissimos totam ex culpa maiores atque?</p>
-
+        <p>{descripcion}</p>
         {
           //Acá empleamos la logica de montaje y desmotaje del contador
 
