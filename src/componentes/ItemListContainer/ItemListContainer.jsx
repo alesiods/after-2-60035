@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { getProductos, getProductosPorCategorias } from "../../asyncmock";
+//import { getProductos, getProductosPorCategorias } from "../../asyncmock";
 import ItemList from "../ItemList/ItemList";
 import { useParams } from "react-router-dom";
 import Loader from "../Loader/Loader";
+import { db } from "../../services/config";
+import { collection, getDocs, query, where } from "firebase/firestore";
 
 const ItemListContainer = () => {
     const [productos, setProductos] = useState([]);
@@ -10,7 +12,27 @@ const ItemListContainer = () => {
 
     const {idCategoria} = useParams()
 
-    useEffect(() => {
+    useEffect(()=> {
+        setLoading(true)
+        const misProductos = idCategoria ? query(collection(db, "productos"), where("idCat", "==", idCategoria)) : (collection(db,"productos"))
+
+        getDocs(misProductos)
+        .then (res => {
+            
+            const nuevosProductos = res.docs.map(doc =>{
+                const data = doc.data()
+                return {id:doc.id , ...data}
+            })
+            setProductos(nuevosProductos)
+        })
+        .catch(error => console.log(error))
+        .finally(()=>{
+            console.log("proceso finalizado")
+            setLoading(false)
+        })
+    }, [idCategoria])
+
+    /* useEffect(() => {
         setLoading(true)
         const funcionProductos = idCategoria ? getProductosPorCategorias : getProductos;
 
@@ -24,7 +46,7 @@ const ItemListContainer = () => {
             setLoading(false)
         })
         
-    }, [idCategoria])
+    }, [idCategoria]) */
 
     return (
         <>
