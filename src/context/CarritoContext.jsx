@@ -58,7 +58,7 @@ export const CarritoProvider = ({ children }) => {
   };
 
   const vaciarCarrito = () => {
-    Swal.fire({
+    /* Swal.fire({
       title: "Estás seguro?",
       text: "Una vez eliminado tendrás que seleccionar todos nuevamente",
       icon: "warning",
@@ -73,11 +73,12 @@ export const CarritoProvider = ({ children }) => {
           text: "Tus productos fueron quitados del carrito",
           icon: "success",
         });
-        setCarrito([]);
-        setCantidadTotal(0);
-        setTotal(0);
+        
       }
-    });
+    }) */
+      setCarrito([]);
+      setCantidadTotal(0);
+      setTotal(0);
   };
 
   return (
