@@ -195,7 +195,7 @@ const Checkout = () => {
         )
         .then(()=>{
 
-        //2) Guardar la orden en la base de datos
+        //Guardar la orden en la base de datos
         addDoc(collection(db, "ordenes"), orden)
             .then(docRef => {
                 setOrdenId(docRef.id)
