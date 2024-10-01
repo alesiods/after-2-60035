@@ -18,7 +18,6 @@ const ItemDetail = ({id, nombre, precio, img, stock, descripcion}) => {
 
   const manejadorCantidad = (cantidad) => {
     setAgregarCantidad(cantidad);
-    console.log("Productos agregador:" + cantidad)
 
     //Ahora aca yo puedo crear un objeto con el item y la cantidad
     const item = {id, nombre, precio}

@@ -58,24 +58,7 @@ export const CarritoProvider = ({ children }) => {
   };
 
   const vaciarCarrito = () => {
-    /* Swal.fire({
-      title: "Estás seguro?",
-      text: "Una vez eliminado tendrás que seleccionar todos nuevamente",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Si, estoy seguro!",
-    }).then((result) => {
-      if (result.isConfirmed) {
-        Swal.fire({
-          title: "Eliminados",
-          text: "Tus productos fueron quitados del carrito",
-          icon: "success",
-        });
-        
-      }
-    }) */
+   
       setCarrito([]);
       setCantidadTotal(0);
       setTotal(0);
